@@ -1,0 +1,37 @@
+.header__container {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 2px 5px 5px rgba(0,0,0,.1);
+    .header__container-logo {
+        h1 {
+            font-size: 20px;
+            font-weight: normal;
+            color: green;
+        }
+    }
+    .header__container-nav {
+        .nav__container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            a {
+                margin-right: 15px;
+                text-decoration: none;
+                background-color: green;
+                border-radius: 10px;
+                span {
+                    color: #ffffff;
+                    display: inline-block;
+                    margin: 5px 10px;
+                }
+                &:hover {
+                    box-shadow: 2px 5px 5px rgba(0,0,0,.1);
+                }
+            }
+        }
+        
+    }
+    
+}
