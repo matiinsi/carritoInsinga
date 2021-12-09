@@ -1,0 +1,11 @@
+.main__container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-content: space-around;
+    .main__container-products {
+        h1 {
+            color: $color-primary;
+        }
+    }
+}
