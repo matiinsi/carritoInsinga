@@ -1,14 +1,16 @@
 .header__container {
-    padding: 30px;
+    padding: 10px 30px;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background-color: #000000;
     box-shadow: 2px 5px 5px rgba(0,0,0,.1);
     .header__container-logo {
-        h1 {
-            font-size: 20px;
-            font-weight: normal;
-            color: green;
+        a {
+            img {
+                width: 90px;
+                max-width: 100%;
+            }
         }
     }
     .header__container-nav {
@@ -19,7 +21,7 @@
             a {
                 margin-right: 15px;
                 text-decoration: none;
-                background-color: green;
+                border: 3px solid $color-primary;
                 border-radius: 10px;
                 span {
                     color: #ffffff;
@@ -34,7 +36,7 @@
         
     }
     .header__container-cart {
-        background-color: $color-primary;
+        border: 3px solid $color-primary;
         border-radius: 10px;
         .cart__container {
             display: flex;

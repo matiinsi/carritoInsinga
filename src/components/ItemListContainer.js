@@ -1,13 +1,26 @@
 import React from "react";
+import ItemCount from "./ItemCount";
+import Productos from "./../products.json";
 
-const ItemListContainer = ({catalogo}) => {
+const ItemListContainer = () => {
     return(
         <main className="main__container">
             <div className="main__container-products">
-                <h1>{catalogo}</h1>
+                <div className="products__container">
+                    {
+                        Productos.map((producto, index) => {
+                            return (
+                                <div key={index}>
+                                    <ItemCount producto={producto} />
+                                </div>
+                            )  
+                        })
+                    }
+                      
+                </div> 
             </div>
         </main>
     );
 }
 
-export default ItemListContainer
+export default ItemListContainer;
