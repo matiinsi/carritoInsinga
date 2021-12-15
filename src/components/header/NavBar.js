@@ -12,13 +12,13 @@ const NavBar = () => {
             </div>
             <div className="header__container-nav">
                 <div className="nav__container">
-                    <a href="#">
+                    <a href="/">
                         <span>Inicio</span>
                     </a>
-                    <a href="#">
+                    <a href="/productos">
                         <span>Productos</span>
                     </a>
-                    <a href="#">
+                    <a href="/contacto">
                         <span>Contacto</span>
                     </a>
                 </div>
