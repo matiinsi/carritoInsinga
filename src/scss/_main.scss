@@ -1,8 +1,5 @@
 .main__container {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    align-items: center;
-    justify-content: space-around;
+    width: 100%;
     .main__container-products {
         h1 {
             color: $color-primary;
@@ -93,6 +90,28 @@
                 }
             }
         }
+    }
+    .main__container-product {
+        >div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 60px;
+            .product__container-image, .product__container-texts {
+                width: 100%;
+                .product__container-info {
+                    padding: 20px 0px;
+                    display: flex;
+                    .product__container-price {
+                        margin-left: 100px;
+                        strong {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
 
