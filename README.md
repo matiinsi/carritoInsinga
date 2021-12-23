@@ -1,3 +1,7 @@
+# Detalles del proyecto
+
+Se utiliza la marca de un amigo / cliente para poder trabajar en el desafio. La marca vende productos de estética automotor. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
