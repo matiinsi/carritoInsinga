@@ -13,12 +13,12 @@ const Item = ({onAdd, producto}) => {
                     </div>
                     <div className="card-content">
                         <div>
-                            <Link to={`producto/${producto.id}`}><h3>{producto.name} - ({producto.stock})</h3></Link>
+                            <Link to={`/producto/${producto.id}`}><h3>{producto.name} - ({producto.stock})</h3></Link>
                             <strong>$ {producto.price}</strong>
                         </div>
                         <p>{producto.description}</p>
                     </div>
-                    <ItemCount onAdd={onAdd} initial={1} stock={producto.stock} />
+                    <ItemCount onAdd={onAdd} initial={1} producto={producto}  />
                 </div>
             </div>
         </div>

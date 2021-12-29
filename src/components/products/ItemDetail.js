@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
+import ItemCount from './ItemCount';
 
-const ItemDetail = ({productSelected}) => {
+const ItemDetail = ({productSelected, onAdd}) => {
     
     useEffect(() => {
         console.log(productSelected)
@@ -24,11 +25,7 @@ const ItemDetail = ({productSelected}) => {
                                 <strong>$ {producto.price}</strong>
                             </div>
                         </div>
-                        <div className="addCard__container-submit">
-                            <button className="btn waves-effect waves-light" type="submit">Agregar al carrito
-                                <i className="material-icons right">send</i>
-                            </button>
-                        </div>
+                        <ItemCount onAdd={onAdd} initial={1} stock={producto.stock} />
                     </div>  
                 </div>
             )

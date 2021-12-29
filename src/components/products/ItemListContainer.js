@@ -2,16 +2,7 @@ import React, {useState, useEffect} from "react";
 import ItemList from './ItemList';
 
 
-function onAdd(cantidad) {
-    if (cantidad !== 0) {
-        console.log(`Se agrego ${cantidad} productos al carrito`)
-    } else {
-        console.log(`El producto no contiene stock`)
-    }
-    
-}
-
-const ItemListContainer = ({Productos}) => {
+const ItemListContainer = ({Productos, onAdd}) => {
 
     // State vació para agregar los los productos
     let [listProductos, setListProductos] = useState([])

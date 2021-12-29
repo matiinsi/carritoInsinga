@@ -2,6 +2,15 @@ import ItemListContainer from "./components/products/ItemListContainer";
 import NavBar from "./components/header/NavBar";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ItemDetailContainer from "./components/products/ItemDetailContainer";
+import Cart from './components/cart/Cart';
+
+function onAdd(cantidad) {
+    if (cantidad !== 0) {
+        window.location.href = `/cart/${cantidad}`
+    } else {
+        console.log(`El producto no contiene stock`)
+    }
+}
 
 const Productos = [
     {
@@ -10,7 +19,8 @@ const Productos = [
         "stock": 5,
         "price": 400,
         "description": "lorem impsu lorem lorem",
-        "path" : "producto1.jpg"
+        "path" : "producto1.jpg",
+        "categoria" : 'shampoo'
     },
     {
         "id": 2,
@@ -18,7 +28,8 @@ const Productos = [
         "stock": 10,
         "price": 700,
         "description": "lorem impsu lorem lorem",
-        "path" : "producto2.jpg"
+        "path" : "producto2.jpg",
+        "categoria" : 'desengrasante'
     },
     {
         "id": 3,
@@ -26,7 +37,8 @@ const Productos = [
         "stock": 4,
         "price": 1000,
         "description": "lorem impsu lorem lorem",
-        "path" : "producto3.jpg"
+        "path" : "producto3.jpg",
+        "categoria" : 'acondicionadores'
     }
 
 ]
@@ -37,9 +49,10 @@ const App = () => {
         <Router>
             <NavBar />
             <Routes>
-                <Route path="/" element={<ItemListContainer Productos={Productos} />} />
-                <Route path="/productos" element={<ItemListContainer Productos={Productos} />} />
-                <Route path="/producto/:id" element={<ItemDetailContainer Productos={Productos} />} />
+                <Route path="/" element={<ItemListContainer Productos={Productos} onAdd={onAdd} />} />
+                <Route path="/productos" element={<ItemListContainer Productos={Productos} onAdd={onAdd} />} />
+                <Route path="/producto/:id" element={<ItemDetailContainer Productos={Productos} onAdd={onAdd} />} />
+                <Route path="/cart/:cantidad" element={<Cart />} />
             </Routes>
         </Router>
     );

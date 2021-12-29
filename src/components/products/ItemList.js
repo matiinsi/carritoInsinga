@@ -2,7 +2,7 @@ import React from 'react'
 import Item from './Item'
 
 
-const ItemList = ({onAdd, listProductos}) => {
+const ItemList = ({onAdd, listProductos, contador, setContador}) => {
 
     return(
         <div className="products__container">
@@ -10,7 +10,7 @@ const ItemList = ({onAdd, listProductos}) => {
                 listProductos.map((producto, key) => {
                     return (
                         <div key={key}>
-                            <Item onAdd={onAdd} producto={producto}/>
+                            <Item onAdd={onAdd} producto={producto} contador={contador} setContador={setContador}/>
                         </div>
                     )
                 })

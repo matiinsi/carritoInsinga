@@ -3,7 +3,7 @@ import ItemDetail from './ItemDetail';
 import {useParams } from 'react-router-dom'
 
 
-const ItemDetailContainer = ({Productos}) => {
+const ItemDetailContainer = ({Productos, onAdd}) => {
 
         let { id } = useParams();
 
@@ -32,7 +32,7 @@ const ItemDetailContainer = ({Productos}) => {
     return(
         <main className="main__container">
             <div className="main__container-product">
-                <ItemDetail productSelected={productSelected} />
+                <ItemDetail productSelected={productSelected} onAdd={onAdd} />
             </div>
         </main>
     )
