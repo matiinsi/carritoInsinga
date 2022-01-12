@@ -1,12 +1,8 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import ItemCount from './ItemCount';
 
 const ItemDetail = ({productSelected, onAdd}) => {
     
-    useEffect(() => {
-        console.log(productSelected)
-    }, [productSelected])
-
     return(
         productSelected.map((producto, key) => {
             return (
@@ -25,7 +21,7 @@ const ItemDetail = ({productSelected, onAdd}) => {
                                 <strong>$ {producto.price}</strong>
                             </div>
                         </div>
-                        <ItemCount onAdd={onAdd} initial={1} stock={producto.stock} />
+                        <ItemCount onAdd={onAdd} initial={1} stock={producto.stock} producto={producto} />
                     </div>  
                 </div>
             )

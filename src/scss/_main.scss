@@ -5,7 +5,8 @@
             color: $color-primary;
         }
         .products__container {
-            margin-top: 50px;
+            margin: 50px auto;
+            max-width: 80%;
             .card-image {
                 img {
                     max-width: 100%;
@@ -82,7 +83,7 @@
                     }
                     .addCard__container-submit {
                         width: 100%;
-                        button {
+                        button, a {
                             margin-top: 15px;
                             width: 100%;
                         }
@@ -92,11 +93,21 @@
         }
     }
     .main__container-product {
+        max-width: 80%;
+        margin: 50px auto;
         >div {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 30px 60px;
+            .product__container-image {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img {
+                    max-width: 100%;
+                }
+            }
             .product__container-image, .product__container-texts {
                 width: 100%;
                 .product__container-info {
@@ -167,7 +178,7 @@
                         }
                         .addCard__container-submit {
                             width: 100%;
-                            button {
+                            button, a {
                                 margin-top: 15px;
                                 width: 100%;
                             }
@@ -177,6 +188,17 @@
             }
         }
 
+    }
+    .slider__container {
+        max-height: 600px;
+        overflow: hidden;
+        .slider__container-container {
+            .portada {
+                background-size: cover;
+                background-position: center center;
+                height: 600px;
+            }
+        }
     }
 }
 

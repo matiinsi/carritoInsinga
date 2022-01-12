@@ -1,16 +1,26 @@
+import React, {useState} from "react"
 import ItemListContainer from "./components/products/ItemListContainer";
 import NavBar from "./components/header/NavBar";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ItemDetailContainer from "./components/products/ItemDetailContainer";
 import Cart from './components/cart/Cart';
+import Categories from './components/categories/Categories';
+import {CustomProvieder} from './contextos/CartContext'
 
-function onAdd(cantidad) {
-    if (cantidad !== 0) {
-        window.location.href = `/cart/${cantidad}`
-    } else {
-        console.log(`El producto no contiene stock`)
+const Categorias = [
+    {
+        "id": 1,
+        "name": "Desengrasantes"
+    },
+    {
+        "id": 2,
+        "name": "Shampoo"
+    },
+    {
+        "id": 3,
+        "name": "Acondicionadres"
     }
-}
+]
 
 const Productos = [
     {
@@ -20,7 +30,7 @@ const Productos = [
         "price": 400,
         "description": "lorem impsu lorem lorem",
         "path" : "producto1.jpg",
-        "categoria" : 'shampoo'
+        "categoria" : 2
     },
     {
         "id": 2,
@@ -29,7 +39,7 @@ const Productos = [
         "price": 700,
         "description": "lorem impsu lorem lorem",
         "path" : "producto2.jpg",
-        "categoria" : 'desengrasante'
+        "categoria" : 1
     },
     {
         "id": 3,
@@ -38,23 +48,39 @@ const Productos = [
         "price": 1000,
         "description": "lorem impsu lorem lorem",
         "path" : "producto3.jpg",
-        "categoria" : 'acondicionadores'
+        "categoria" : 3
     }
 
 ]
 
 
 const App = () => {
+
+    //State con info del producto
+    const [cart, setCart] = useState([]);
+
+    function onAdd(producto) {
+                
+        if (producto.cantidad !== 0) {
+            setCart([...cart, producto]);
+        } else {
+            console.log(`El producto no contiene stock`)
+        }
+    }
+
     return(
-        <Router>
-            <NavBar />
-            <Routes>
-                <Route path="/" element={<ItemListContainer Productos={Productos} onAdd={onAdd} />} />
-                <Route path="/productos" element={<ItemListContainer Productos={Productos} onAdd={onAdd} />} />
-                <Route path="/producto/:id" element={<ItemDetailContainer Productos={Productos} onAdd={onAdd} />} />
-                <Route path="/cart/:cantidad" element={<Cart />} />
-            </Routes>
-        </Router>
+        <CustomProvieder>
+            <Router>
+                <NavBar Categorias={Categorias} />
+                <Routes>
+                    <Route path="/" element={<ItemListContainer Productos={Productos} onAdd={onAdd} />} />
+                    <Route path="/productos" element={<ItemListContainer Productos={Productos} onAdd={onAdd} />} />
+                    <Route path="/producto/:id" element={<ItemDetailContainer Productos={Productos} onAdd={onAdd} />} />
+                    <Route path="/categoria/:id" element={<Categories Productos={Productos} onAdd={onAdd} />} />
+                    <Route path="/cart" element={<Cart />} />
+                </Routes>
+            </Router>
+        </CustomProvieder>
     );
 }
 

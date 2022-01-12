@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Slider from "../slider/Slider";
 import ItemList from './ItemList';
 
 
@@ -6,6 +7,9 @@ const ItemListContainer = ({Productos, onAdd}) => {
 
     // State vació para agregar los los productos
     let [listProductos, setListProductos] = useState([])
+
+    // State de loading
+    let [loading, setLoading] = useState(true);
 
     // Cargo los productos con una promesa
     useEffect(() => {
@@ -17,6 +21,7 @@ const ItemListContainer = ({Productos, onAdd}) => {
         CargoProducto
             .then((productos) => {
                 setListProductos(productos)
+                setLoading(false)
             })
             .catch(() => {
                 console.log('Error')
@@ -27,8 +32,17 @@ const ItemListContainer = ({Productos, onAdd}) => {
         
     return(
         <main className="main__container">
+            <Slider />
             <div className="main__container-products">
-                <ItemList onAdd={onAdd} listProductos={listProductos} />
+                {
+                    loading === true ?  
+                        <div className="loading__container">
+                            <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                        </div>
+                    :
+                        <ItemList onAdd={onAdd} listProductos={listProductos} />
+                }
+               
             </div>
         </main>
     );

@@ -1,8 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
+import M from "materialize-css"
 
-const NavBar = () => {
+const NavBar = ({Categorias}) => {
+
+    useEffect(() => {
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        M.Dropdown.init(elems);
+    }, [])
 
     return(
         <header className="header__container">
@@ -19,9 +25,19 @@ const NavBar = () => {
                     <NavLink to="/productos">
                         <span>Productos</span>
                     </NavLink>
-                    <NavLink to="/categorias/:categoria">
+                    <NavLink to="#" className="dropdown-trigger" data-target='categorias'>
                         <span>Categorias</span>
                     </NavLink>
+                    <ul id='categorias' className='dropdown-content'>
+                            {
+                                Categorias.map((cat, key) => {
+                                    return(
+                                        <li key={key}>
+                                            <NavLink to={`/categoria/${cat.id}`}>{cat.name}</NavLink>
+                                        </li>)
+                                })
+                            }
+                        </ul>
                     <NavLink to="/contacto">
                         <span>Contacto</span>
                     </NavLink>
