@@ -14,20 +14,33 @@ const CustomProvieder = ({children}) => {
         if (cart.length !== 0) {
             if (isInCart(producto.id)) {
 
-                // Guardo el producto elegido
-                const productSelected = selectItem(producto.id)
+                // Filtro el indice del producto
+                const findPorId = cart.findIndex(
+                    prod => prod.id === producto.id
+                );
 
-                // Lo elimino del cart
-                const listBefore = removeItem(producto.id)
+                // Actualizo la cantidad del producto
+                const nuevaCantidad = cart[findPorId].cantidad + producto.cantidad;
 
-                // Actualizo la lista de productos
-                productSelected[0].cantidad = productSelected[0].cantidad + producto.cantidad
+                // Nueva lista de items sin el id seleccionado
+                const listaViejaDeProductos = selectItem(producto.id)
+
+                console.log(listaViejaDeProductos)
 
                 // Actualizo el cart
-                setCart(listBefore, productSelected)
-                setPrecioTotal((productSelected[0].cantidad * productSelected[0].precio) + precioTotal)
-                console.log(cart)
+                const listaDeProductos = [
+                    ...listaViejaDeProductos,
+                    {
+                        name: cart[findPorId].name,
+                        cantidad: nuevaCantidad,
+                        id: producto.id,
+                        precio: producto.precio
+                    },
+                ];
 
+                setCart(listaDeProductos);
+
+                console.log(cart)
                 
             } else {
                 setCart([...cart, producto])
@@ -44,7 +57,7 @@ const CustomProvieder = ({children}) => {
     }
 
     const selectItem = (id) => {
-        return cart.filter((product) => product.id === id)
+        return cart.filter((product) => product.id !== id)
     }
 
     const removeItem = (id) => {
