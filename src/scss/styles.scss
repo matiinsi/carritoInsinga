@@ -118,5 +118,28 @@ body {
             }
         }
     }
+}
 
+/* My Styles */
+.btn-dreams {
+    background-color: black;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 0px;
+    cursor: pointer;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    color: #ffffff;
+    text-transform: uppercase;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    &:hover {
+        background-color: $color-primary;
+        color: #000000;
+    }
 }

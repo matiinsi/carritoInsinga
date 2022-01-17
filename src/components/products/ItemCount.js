@@ -12,6 +12,7 @@ const ItemCount = ({initial, stock, producto}) => {
     // State para verificar si se dio click en "agregar al carrito"
     const [addCartActive, setAddCartActive] = useState(false);
 
+
     return(
         <div className="card-action" onSubmit={(e) => e.preventDefault()}>
         <form className="addCard__container">
@@ -24,7 +25,7 @@ const ItemCount = ({initial, stock, producto}) => {
                 {addCartActive === false ? 
                     <button className="btn waves-effect waves-light" 
                         onClick={ () => {
-                                addItem({id: producto.id, name: producto.name, cantidad: contador, precio: producto.price}); 
+                                addItem({id: producto.id, name: producto.name, cantidad: contador, precio: producto.price, path: producto.path}); 
                                 setAddCartActive(true);
                             }
                         } 

@@ -11,7 +11,6 @@ const Slider = () => {
             spaceBetween={50}
             slidesPerView={1}
             onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
             className='slider__container-container'
             >
                 <SwiperSlide className="portada" style={{

@@ -9,7 +9,7 @@ const CustomProvieder = ({children}) => {
     const [cantidadTotal, setCantidadTotal] = useState(0)
 
 
-    const addItem = (producto) => {
+    let addItem = (producto) => {
 
         if (cart.length !== 0) {
             if (isInCart(producto.id)) {
@@ -25,7 +25,7 @@ const CustomProvieder = ({children}) => {
                 // Nueva lista de items sin el id seleccionado
                 const listaViejaDeProductos = selectItem(producto.id)
 
-                console.log(listaViejaDeProductos)
+                console.log(listaViejaDeProductos);
 
                 // Actualizo el cart
                 const listaDeProductos = [
@@ -34,11 +34,18 @@ const CustomProvieder = ({children}) => {
                         name: cart[findPorId].name,
                         cantidad: nuevaCantidad,
                         id: producto.id,
-                        precio: producto.precio
+                        precio: producto.precio,
+                        path: producto.path
                     },
                 ];
 
                 setCart(listaDeProductos);
+
+                // Sumo el total de productos
+                setCantidadTotal((cantidadTotal - cart[findPorId].cantidad) + nuevaCantidad);
+
+                // Sumo el precio total
+                setPrecioTotal((producto.cantidad * producto.precio) + precioTotal)
 
                 console.log(cart)
                 
@@ -46,13 +53,20 @@ const CustomProvieder = ({children}) => {
                 setCart([...cart, producto])
                 setPrecioTotal((producto.cantidad * producto.precio) + precioTotal)
                 console.log(cart);
+
+                // Sumo el total de productos
+                setCantidadTotal(producto.cantidad + cantidadTotal);
             }
         } else {
             setCart([producto])
             console.log(cart);
-        }
 
-        
+            // Sumo el precio total
+            setPrecioTotal((producto.cantidad * producto.precio) + precioTotal)
+
+            // Sumo el total de productos
+            setCantidadTotal(producto.cantidad);
+        }       
         
     }
 
@@ -60,8 +74,22 @@ const CustomProvieder = ({children}) => {
         return cart.filter((product) => product.id !== id)
     }
 
-    const removeItem = (id) => {
-        return cart.filter(producto => producto.id !== id);
+    const removeItem = (id, cantidad) => {
+
+        // Nueva lista de items sin el id seleccionado
+        const listaViejaDeProductos = selectItem(id)
+
+        console.log(listaViejaDeProductos);
+        
+        // Actualizo el cart
+        const listaDeProductos = [
+            ...listaViejaDeProductos
+        ];
+
+        setCart(listaDeProductos);
+
+        // Elimino el producto del total
+        setCantidadTotal(cantidadTotal - cantidad)
     }
 
     const clearCart = () => {
@@ -80,7 +108,6 @@ const CustomProvieder = ({children}) => {
         removeItem,
         clearCart
     }
-
 
     return(
         <ContextoTema.Provider value={valorDelContexto}>

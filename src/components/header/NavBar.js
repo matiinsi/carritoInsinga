@@ -28,7 +28,7 @@ const NavBar = ({Categorias}) => {
                     <NavLink to="#" className="dropdown-trigger" data-target='categorias'>
                         <span>Categorias</span>
                     </NavLink>
-                    <ul id='categorias' className='dropdown-content'>
+                        <ul id='categorias' className='dropdown-content'>
                             {
                                 Categorias.map((cat, key) => {
                                     return(
@@ -43,8 +43,7 @@ const NavBar = ({Categorias}) => {
                     </NavLink>
                 </div>
             </div>
-            <CartWidget ctnProductos={5} />
-            
+            <CartWidget />
         </header>
     );
 }
