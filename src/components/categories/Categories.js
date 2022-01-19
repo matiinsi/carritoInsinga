@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import ItemList from '../products/ItemList';
+import {getFirestore} from '../../firebase/conexion';
 
-const Categories = ({Productos, onAdd}) => {
+const Categories = ({Productos}) => {
 
     let {id} = useParams();
 
@@ -11,28 +12,24 @@ const Categories = ({Productos, onAdd}) => {
 
     // Cargo los productos con una promesa
     useEffect(() => {
-        const CargoProducto =  new Promise((res, rej) => {
-            setTimeout(() => {
-                res(Productos)
-            }, 2000)
+        const db = getFirestore()
+        const listProducts = db.collection('items');
+        const productAndCategoryId = listProducts.where('categoryId', '==', parseInt(id))
+
+
+        productAndCategoryId.get().then((querySnapchot) => {
+            setListProductos(querySnapchot.docs.map(product => product.data()));
+        }).catch((error) => {
+            console.log(error)
         })
-        CargoProducto
-            .then((productos) => {
-                let filterProduct = productos.filter(producto => producto.categoria === parseInt(id) );
-                setListProductos(filterProduct)
 
-            })
-            .catch(() => {
-                console.log('Error')
-            })
-
-    }, [id, Productos]);
+    }, [id, listProductos]);
 
 
     return(
         <main className="main__container">
             <div className="main__container-products">
-                <ItemList listProductos={listProductos} onAdd={onAdd} />
+                <ItemList listProductos={listProductos} />
             </div>
         </main>
     )

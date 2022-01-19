@@ -11,6 +11,8 @@ const CustomProvieder = ({children}) => {
 
     let addItem = (producto) => {
 
+        console.log(producto)
+
         if (cart.length !== 0) {
             if (isInCart(producto.id)) {
 

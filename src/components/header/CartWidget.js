@@ -6,8 +6,6 @@ const CardWidget = () => {
 
     const {cantidadTotal, cart} = useContext(ContextoTema);
 
-    console.log(cart.length)
-
     return(
         <div className="header__container-cart">
             <div className="cart__container dropdown-trigger" data-target='shopping_cart'>
