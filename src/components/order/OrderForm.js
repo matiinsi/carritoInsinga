@@ -1,8 +1,8 @@
 import React, {useContext, useState} from "react";
+import { useEffect } from "react/cjs/react.development";
 import {ContextoTema} from './../../contextos/CartContext'
 import {getFirestore} from './../../firebase/conexion';
 
- 
 const OrderForm = () => {
 
     const db = getFirestore(),
@@ -11,6 +11,11 @@ const OrderForm = () => {
 
     const {cart, precioTotal, clearCart} = useContext(ContextoTema);
 
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
+    const [idOrder, setIdOrder] = useState(0)
+    const [orderSend, setOrderSend] = useState(false)
     const [order, setOrder] = useState(
         {
             date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
@@ -18,15 +23,8 @@ const OrderForm = () => {
             items: cart
         }
     )
-    const [name, setName] = useState('')
-    const [phone, setPhone] = useState('')
-    const [email, setEmail] = useState('')
-    const [idOrder, setIdOrder] = useState(0)
-    const [orderSend, setOrderSend] = useState(false)
-
-    const orderProcess = (e) => {
-        e.preventDefault();
-        
+ 
+    useEffect(() =>{
         setOrder({
             ...order,
             buyer: {
@@ -35,6 +33,10 @@ const OrderForm = () => {
                 email: email
             }
         })
+    }, [name, email, phone])
+
+    const orderProcess = (e) => {
+        e.preventDefault();
 
         orders.add(order).then(({id}) => {
             setIdOrder(id)
@@ -43,9 +45,8 @@ const OrderForm = () => {
         }).finally(() => {
             setOrderSend(true)
             clearCart()
+            console.log(order)
         });
-
-
     }
 
     return(
@@ -54,7 +55,7 @@ const OrderForm = () => {
                 {
                     (orderSend !== true) ?
                 
-                        <form id="formOrder" onSubmit={(e) => orderProcess(e, name, phone, email)}>
+                        <form id="formOrder" onSubmit={(e) => orderProcess(e)}>
                             <div className="orderConfirm__dates">       
                                 <div className="orderConfirm__dates-container">
                                     <div className="orderConfirm__dates-container-title">
