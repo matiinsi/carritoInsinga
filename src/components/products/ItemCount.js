@@ -19,7 +19,7 @@ const ItemCount = ({initial, stock, producto}) => {
             <div className="addCard__container-counter">
                 <div className="value-button" id="decrease" onClick={() => setContador((contador === 0) ? contador : contador - 1 )}>-</div>
                 <input type="number" id="number" value={contador}  />
-                <div className="value-button" id="increase" onClick={() => setContador((contador === stock) ? contador : contador + 1)}>+</div>
+                <div className="value-button" id="increase" onClick={() => setContador((contador === producto.stock) ? contador : contador + 1)}>+</div>
             </div>
             <div className="addCard__container-submit">
                 {addCartActive === false ? 

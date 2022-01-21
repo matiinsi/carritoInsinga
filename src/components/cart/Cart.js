@@ -30,7 +30,7 @@ const Cart = () => {
                             {
                                 cart.map((producto) => {
                                     return(
-                                        <div className='cart__container-listProductsItems'>
+                                        <div className='cart__container-listProductsItems' key={producto.id}>
                                             <div className='cart__container-listProductsItemsInfoContainer'>
                                                 <div className='cart__container-listProductsItemsRemove' onClick={() => removeItem(producto.id, producto.cantidad)} data-id={producto.id}>
                                                     <span>X</span>
@@ -82,7 +82,7 @@ const Cart = () => {
                                 </div>
                             </div>
                             <div className='cart__container-orderListTotalButton'>
-                                <button className='btn-dreams'>Finalizar compra</button>
+                                <Link to="/order" className='btn-dreams'>Finalizar compra</Link>
                             </div>
                         </div>
                     </>

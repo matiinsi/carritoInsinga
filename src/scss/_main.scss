@@ -357,6 +357,103 @@
             }
         }
     }
+    .main__container-orderConfirm {
+        margin: 50px auto;
+        max-width: 80%;
+        form {
+            display: grid;
+            grid-template-columns: 70% 30%;
+            column-gap: 2rem;
+            .orderConfirm__dates {
+                .orderConfirm__dates-container {
+                    .orderConfirm__dates-container-title {
+                        h3 {
+                            font-size: 20px;
+                            text-transform: uppercase;
+                            font-weight: 600;
+                        }
+                    }
+                    .orderConfirm__dates-container-form {
+                        .form__container-groupDouble {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            column-gap: 2rem;
+                            input {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+            .orderConfirm__detail {
+                border-left: 1px solid #d6d6d6;
+                padding-left: 20px;
+                .cart__container-orderListproducts {
+                    .cart__container-listProductsItems {
+                        display: grid;
+                        grid-template-columns: 70% 30%;
+                        align-items: center;
+                        padding: 0rem 0rem 2rem;
+                        .cart__container-listProductsItemsInfoContainer {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            
+                        }
+                        .cart__container-listProductsItemsPrice,
+                        .cart__container-listProductsItemsCantidad,
+                        .cart__container-listProductsItemsTotal {
+                            text-align: right;
+                            span {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+                .cart__container-orderListTitle {
+                    border-bottom: 2px solid #d6d6d6;
+                    span {
+                        font-weight: 600;
+                        text-transform: uppercase;
+                    }
+                }
+                .cart__container-orderListSubtotalContainer, 
+                .cart__container-orderListTotalContainer {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 15px 0px;
+                    border-bottom: 1px solid #d6d6d6;
+                    .cart__container-orderListSubtotalContainerPrice,
+                    .cart__container-orderListTotalContainerPrice {
+                        span {
+                            font-weight: 600;
+                        }
+                    }
+                }
+                .cart__container-orderListTotalButton {
+                    margin-top: 20px;
+                    button {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .orderConfirm__container-confirm {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            grid-column: 1/3;
+            span {
+                display: block;
+                font-size: 24px;
+                font-weight: 400;
+                strong {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 1024px) {

@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ItemDetailContainer from "./components/products/ItemDetailContainer";
 import Cart from './components/cart/Cart';
 import Categories from './components/categories/Categories';
-import {CustomProvieder} from './contextos/CartContext'
+import {CustomProvieder} from './contextos/CartContext';
+import OrderForm from './components/order/OrderForm';
 import {getFirestore} from './firebase/conexion';
 
 
@@ -55,6 +56,7 @@ const App = () => {
                     <Route path="/producto/:id" element={<ItemDetailContainer Productos={productos} />} />
                     <Route path="/categoria/:id" element={<Categories Productos={productos} />} />
                     <Route path="/cart" element={<Cart />} />
+                    <Route path="/order" element={<OrderForm />} />
                 </Routes>
             </Router>
         </CustomProvieder>
