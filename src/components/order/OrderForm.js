@@ -1,5 +1,4 @@
-import React, {useContext, useState} from "react";
-import { useEffect } from "react/cjs/react.development";
+import React, {useContext, useState, useEffect} from "react";
 import {ContextoTema} from './../../contextos/CartContext'
 import {getFirestore} from './../../firebase/conexion';
 
@@ -25,17 +24,10 @@ const OrderForm = () => {
             items: cart
         }
     )
- 
-    useEffect(() =>{
-        setOrder({
-            ...order,
-            buyer: {
-                name: name,
-                phone: phone,
-                email: email
-            }
-        })
-    }, [name, email, phone])
+
+    useEffect(() => {
+        console.log('error')
+    }, [order])
 
     const orderProcess = (e) => {
         e.preventDefault();
@@ -48,17 +40,40 @@ const OrderForm = () => {
             },3000)
             
         } else {
-            orders.add(order).then(({id}) => {
-                setIdOrder(id)
-            }).catch(err => {
-                console.log(err)
-            }).finally(() => {
-                setOrderSend(true)
-                clearCart()
-                console.log(order)
-            });
+            setOrder({
+                ...order,
+                buyer: {
+                    name: name,
+                    phone: phone,
+                    email: email
+                }
+            })
+
+            const buyer = {
+                buyer: {
+                    name: name,
+                    phone: phone,
+                    email: email
+                }
+            }
+
+            sendOrder(buyer);
         }
 
+        
+    }
+
+    const sendOrder = (buyer) => {
+
+        orders.add({order, buyer}).then(({id}) => {
+            setIdOrder(id)
+        }).catch(err => {
+            console.log(err)
+        }).finally(() => {
+            setOrderSend(true)
+            clearCart()
+            console.log(buyer)
+        });
     }
 
     return(
