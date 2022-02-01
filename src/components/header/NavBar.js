@@ -25,7 +25,7 @@ const NavBar = ({Categorias}) => {
                     <NavLink to="/productos">
                         <span>Productos</span>
                     </NavLink>
-                    <NavLink to="#" className="dropdown-trigger" data-target='categorias'>
+                    <NavLink to="/categorias" className="dropdown-trigger" data-target='categorias'>
                         <span>Categorias</span>
                     </NavLink>
                         <ul id='categorias' className='dropdown-content'>

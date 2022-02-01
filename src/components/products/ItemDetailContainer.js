@@ -3,7 +3,7 @@ import ItemDetail from './ItemDetail';
 import {useParams } from 'react-router-dom'
 
 
-const ItemDetailContainer = ({Productos, onAdd}) => {
+const ItemDetailContainer = ({Productos}) => {
 
     // State de loading
     let [loading, setLoading] = useState(true);
@@ -13,23 +13,12 @@ const ItemDetailContainer = ({Productos, onAdd}) => {
     // State vació para agregar los productos
     let [productSelected, setProductSelected] = useState([])
 
+
     // Cargo los productos con una promesa
     useEffect(() => {
-        const CargoProducto =  new Promise((res, rej) => {
-            setTimeout(() => {
-                res(Productos)
-            }, 2000)
-        })
-        CargoProducto
-            .then((productos) => {
-                let filterProduct = productos.filter(producto => producto.id === parseInt(id) );
+        let filterProduct = Productos.filter(producto => producto.id === id );
                 setProductSelected(filterProduct)
                 setLoading(false);
-
-            })
-            .catch(() => {
-                console.log('Error')
-            })
 
     }, [id, Productos]);
 
@@ -43,7 +32,14 @@ const ItemDetailContainer = ({Productos, onAdd}) => {
                 :
                 <main className="main__container">
                     <div className="main__container-product">
-                        <ItemDetail productSelected={productSelected} onAdd={onAdd} />
+                        {
+                            productSelected.length > 0 ?
+                                <ItemDetail productSelected={productSelected} />
+                            :
+                            <div className='main__container-product-clean'>
+                                <p>No se encuentran productos</p>
+                            </div>
+                        }
                     </div>
                 </main>
             }

@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemCount from './ItemCount';
 
-const ItemDetail = ({productSelected, onAdd}) => {
+const ItemDetail = ({productSelected}) => {
     
     return(
         productSelected.map((producto, key) => {
@@ -21,7 +21,7 @@ const ItemDetail = ({productSelected, onAdd}) => {
                                 <strong>$ {producto.price}</strong>
                             </div>
                         </div>
-                        <ItemCount onAdd={onAdd} initial={1} stock={producto.stock} producto={producto} />
+                        <ItemCount initial={1} stock={producto.stock} producto={producto} />
                     </div>  
                 </div>
             )

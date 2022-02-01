@@ -91,10 +91,19 @@
                 }
             }
         }
+        .main__container-products-clean {
+            text-align: center;
+            margin-top: 100px;
+            p {
+                text-align: center;
+                font-size: 25px;
+                font-weight: 600;
+            }
+        }
     }
     .main__container-product {
         max-width: 80%;
-        margin: 50px auto;
+        margin: 50px auto;    
         >div {
             display: flex;
             justify-content: space-between;
@@ -185,6 +194,16 @@
                         }
                     }
                 }
+            }
+        }
+        .main__container-product-clean {
+            text-align: center;
+            margin-top: 100px;
+            display: block;
+            p {
+                text-align: center;
+                font-size: 25px;
+                font-weight: 600;
             }
         }
 
@@ -371,6 +390,14 @@
                             font-size: 20px;
                             text-transform: uppercase;
                             font-weight: 600;
+                        }
+                    }
+                    .orderConfirm__dates-container-message {
+                        margin: 1rem 0;
+                        background-color: red;
+                        padding: 0.5rem 2rem;
+                        p {
+                            color: #ffffff;
                         }
                     }
                     .orderConfirm__dates-container-form {

@@ -14,6 +14,8 @@ const OrderForm = () => {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
+    const [emailConfirm, setEmailConfirm] = useState('')
+    const [errorMsj, setErrorMsj] = useState('')
     const [idOrder, setIdOrder] = useState(0)
     const [orderSend, setOrderSend] = useState(false)
     const [order, setOrder] = useState(
@@ -38,15 +40,25 @@ const OrderForm = () => {
     const orderProcess = (e) => {
         e.preventDefault();
 
-        orders.add(order).then(({id}) => {
-            setIdOrder(id)
-        }).catch(err => {
-            console.log(err)
-        }).finally(() => {
-            setOrderSend(true)
-            clearCart()
-            console.log(order)
-        });
+        if (emailConfirm !== email ) {
+            setErrorMsj('El email no concide, por favor verificar')
+
+            setTimeout(() => {
+                setErrorMsj('')
+            },3000)
+            
+        } else {
+            orders.add(order).then(({id}) => {
+                setIdOrder(id)
+            }).catch(err => {
+                console.log(err)
+            }).finally(() => {
+                setOrderSend(true)
+                clearCart()
+                console.log(order)
+            });
+        }
+
     }
 
     return(
@@ -61,6 +73,12 @@ const OrderForm = () => {
                                     <div className="orderConfirm__dates-container-title">
                                         <h3>Detalles de la entrega</h3>
                                     </div>
+                                    {
+                                        errorMsj !== '' &&
+                                        <div className="orderConfirm__dates-container-message">
+                                            <p>{errorMsj}</p>
+                                        </div>
+                                    }
                                     <div className="orderConfirm__dates-container-form">
                                         <div className="form__container-groupDouble">
                                             <input 
@@ -80,7 +98,7 @@ const OrderForm = () => {
                                                 onChange={(e)=> setPhone(e.target.value)}
                                             />
                                         </div>
-                                        <div className="form__container-groupInLine">
+                                        <div className="form__container-groupDouble">
                                             <input 
                                                 type="email" 
                                                 id="email" 
@@ -88,6 +106,14 @@ const OrderForm = () => {
                                                 required="required"
                                                 value={email}
                                                 onChange={(e)=> setEmail(e.target.value)}
+                                            />
+                                            <input 
+                                                type="email" 
+                                                id="email2" 
+                                                placeholder="Confirmar email"
+                                                required="required"
+                                                value={emailConfirm}
+                                                onChange={(e)=> setEmailConfirm(e.target.value)}
                                             />
                                         </div>
                                     </div>

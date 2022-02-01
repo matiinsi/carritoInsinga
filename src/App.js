@@ -19,6 +19,9 @@ const App = () => {
 
     const [categorias, setCategorias] = useState([])
 
+    // State de loading
+    let [loading, setLoading] = useState(true);
+
     useEffect(() => {
         const db = getFirestore()
         const listProducts = db.collection('items');
@@ -31,6 +34,7 @@ const App = () => {
             })
 
             setProductos(listProductsFirestore);
+            setLoading(false)
         }).catch((error) => {
             console.log(error)
         })
@@ -51,7 +55,7 @@ const App = () => {
             <Router>
                 <NavBar Categorias={categorias} />
                 <Routes>
-                    <Route path="/" element={<ItemListContainer Productos={productos}  />} />
+                    <Route path="/" element={<ItemListContainer Productos={productos} loading={loading} />} />
                     <Route path="/productos" element={<ItemListContainer Productos={productos} />} />
                     <Route path="/producto/:id" element={<ItemDetailContainer Productos={productos} />} />
                     <Route path="/categoria/:id" element={<Categories Productos={productos} />} />

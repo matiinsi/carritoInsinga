@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {ContextoTema} from './../../contextos/CartContext'
 
-const ItemCount = ({initial, stock, producto}) => {
+const ItemCount = ({initial, producto}) => {
 
     const {addItem} = useContext(ContextoTema);
 

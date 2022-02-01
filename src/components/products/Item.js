@@ -3,7 +3,7 @@ import ItemCount from './ItemCount';
 import { Link } from "react-router-dom";
 
 
-const Item = ({onAdd, producto}) => {
+const Item = ({producto}) => {
     return(
         <div className="row">
             <div className="col s12">
@@ -18,7 +18,7 @@ const Item = ({onAdd, producto}) => {
                         </div>
                         <p>{producto.description}</p>
                     </div>
-                    <ItemCount onAdd={onAdd} initial={1} producto={producto}  />
+                    <ItemCount initial={1} producto={producto}  />
                 </div>
             </div>
         </div>

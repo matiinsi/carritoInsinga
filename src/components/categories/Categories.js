@@ -18,7 +18,7 @@ const Categories = ({Productos}) => {
 
 
         productAndCategoryId.get().then((querySnapchot) => {
-            setListProductos(querySnapchot.docs.map(product => product.data()));
+            setListProductos(querySnapchot.docs.map((product) => {return {...product.data(), id: product.id}}));
         }).catch((error) => {
             console.log(error)
         })
@@ -29,7 +29,14 @@ const Categories = ({Productos}) => {
     return(
         <main className="main__container">
             <div className="main__container-products">
-                <ItemList listProductos={listProductos} />
+                {
+                    listProductos.length > 0 ?
+                        <ItemList listProductos={listProductos} />
+                    :
+                        <div className='main__container-products-clean'>
+                            <p>No se encuentran productos</p>
+                        </div>
+                }
             </div>
         </main>
     )

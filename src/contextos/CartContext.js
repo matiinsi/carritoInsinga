@@ -14,18 +14,13 @@ const CustomProvieder = ({children}) => {
         if (cart.length !== 0) {
             if (isInCart(producto.id)) {
 
-                // Filtro el indice del producto
                 const findPorId = cart.findIndex(
                     prod => prod.id === producto.id
                 );
-
-                // Actualizo la cantidad del producto
                 const nuevaCantidad = cart[findPorId].cantidad + producto.cantidad;
 
-                // Nueva lista de items sin el id seleccionado
                 const listaViejaDeProductos = selectItem(producto.id)
 
-                // Actualizo el cart
                 const listaDeProductos = [
                     ...listaViejaDeProductos,
                     {
@@ -70,12 +65,8 @@ const CustomProvieder = ({children}) => {
 
     const removeItem = (id, cantidad) => {
 
-        // Nueva lista de items sin el id seleccionado
         const listaViejaDeProductos = selectItem(id)
-
-        console.log(listaViejaDeProductos);
         
-        // Actualizo el cart
         const listaDeProductos = [
             ...listaViejaDeProductos
         ];
