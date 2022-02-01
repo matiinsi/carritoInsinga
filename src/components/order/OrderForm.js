@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, {useContext, useState} from "react";
 import {ContextoTema} from './../../contextos/CartContext'
 import {getFirestore} from './../../firebase/conexion';
 
@@ -24,10 +24,6 @@ const OrderForm = () => {
             items: cart
         }
     )
-
-    useEffect(() => {
-        console.log('error')
-    }, [order])
 
     const orderProcess = (e) => {
         e.preventDefault();
@@ -72,7 +68,6 @@ const OrderForm = () => {
         }).finally(() => {
             setOrderSend(true)
             clearCart()
-            console.log(buyer)
         });
     }
 
